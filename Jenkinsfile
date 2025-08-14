@@ -12,11 +12,11 @@ pipeline {
             }
         }
 
-        stage('Build Project') {
-			steps {
-				sh 'mvn clean compile'
-            }
-        }
+        //stage('Build Project') {
+		//	steps {
+		//		sh 'mvn clean compile '
+        //    }
+        //}
 
         stage('Run Tests') {
 			steps {
