@@ -11,7 +11,7 @@
     <description>Automated API tests for fakestoreapi.com with REST Assured, JUnit 5, and Allure</description>
 
     <properties>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>8</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
