@@ -1,5 +1,5 @@
 pipeline {
-	agent { label 'PascoChewer' }
+	agent any
 
 	tools {
 		allure	"PascoChewer"
