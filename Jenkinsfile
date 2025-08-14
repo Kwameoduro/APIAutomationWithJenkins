@@ -33,8 +33,6 @@ pipeline {
 			steps {
 				allure([
                     includeProperties: false,
-                    reportFiles: 'index.html',
-                    reportName: 'Test Execution Report',
                     jdk: '',
                     results: [[path: 'allure-results']]
                 ])
