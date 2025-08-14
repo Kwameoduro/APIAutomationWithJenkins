@@ -1,11 +1,6 @@
 pipeline {
 	agent { label 'PascoChewer' }
 
-    environment {
-		JAVA_HOME = "${tool name: 'JDK17', type: 'hudson.model.JDK'}"
-        PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
-    }
-
     stages {
 		stage('Environment Info') {
 			steps {
