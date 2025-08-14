@@ -1,0 +1,75 @@
+pipeline {
+	agent { label 'PascoChewer' }
+
+	tools {
+		allure	"PascoChewer"
+	}
+
+    stages {
+		stage('Checkout Code') {
+			steps {
+				checkout scm
+            }
+        }
+
+        stage('Build Project') {
+			steps {
+				sh 'mvn clean compile'
+            }
+        }
+
+        stage('Run Tests') {
+			steps {
+				sh 'mvn clean test'
+            }
+            post {
+				always {
+					junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+
+        stage('Publish Allure Report') {
+			steps {
+				allure([
+                    includeProperties: false,
+                    reportFiles: 'index.html',
+                    reportName: 'Test Execution Report',
+                    jdk: '',
+                    results: [[path: 'allure-results']]
+                ])
+            }
+        }
+    }
+
+    post {
+		success {
+			script {
+				slackSend(
+                    channel: env.SLACK_CHANNEL,
+                    color: 'good',
+                    message: "✅ Build #${env.BUILD_NUMBER} succeeded! Check the report: ${env.BUILD_URL}"
+                )
+                emailext(
+                    subject: "✅ Build #${env.BUILD_NUMBER} SUCCESS",
+                    body: "The build succeeded.\nCheck the report here: ${env.BUILD_URL}",
+                    to: env.EMAIL_RECIPIENTS
+                )
+            }
+        }
+        failure {
+			script {
+				slackSend(
+                    channel: env.SLACK_CHANNEL,
+                    color: 'danger',
+                    message: "❌ Build #${env.BUILD_NUMBER} failed. Check logs: ${env.BUILD_URL}"
+                )
+                emailext(
+                    subject: "❌ Build #${env.BUILD_NUMBER} FAILED",
+                    body: "The build failed.\nCheck logs here: ${env.BUILD_URL}",
+                    to: env.EMAIL_RECIPIENTS
+                )
+            }
+        }
+    }
+}
