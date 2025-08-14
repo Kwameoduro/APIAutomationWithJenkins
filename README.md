@@ -13,7 +13,7 @@ It covers CRUD operations for key resources: **Products**, **Carts**, **Users**,
 - JUnit 5
 - JSON Schema Validator
 - Jenkins (CI/CD)
-- Slack & Email Notifications
+- Slack and Email Notifications
 
 ---
 
