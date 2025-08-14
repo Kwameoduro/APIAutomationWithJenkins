@@ -1,17 +1,28 @@
 pipeline {
 	agent { label 'PascoChewer' }
 
-    tools {
-		jdk 'Java17'        // Make sure Java17 is added in Jenkins Tools
-        maven 'Maven3'      // Make sure Maven3 is added in Jenkins Tools
-        allure 'PascoChewer'
+    environment {
+		JAVA_HOME = "${tool name: 'JDK17', type: 'hudson.model.JDK'}"
+        PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
     }
 
     stages {
 		stage('Environment Info') {
 			steps {
-				sh 'java -version'
-                sh 'mvn -version'
+				sh 'java -version || echo "Java not installed"'
+                sh 'mvn -version || echo "Maven not installed"'
+            }
+        }
+
+        stage('Install Java & Maven') {
+			steps {
+				sh '''
+                    echo "Installing Java 17 and Maven..."
+                    sudo apt-get update -y
+                    sudo apt-get install -y openjdk-17-jdk maven
+                    java -version
+                    mvn -version
+                '''
             }
         }
 
