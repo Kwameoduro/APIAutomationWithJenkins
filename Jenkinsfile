@@ -1,26 +1,35 @@
 pipeline {
 	agent { label 'PascoChewer' }
 
-	tools {
-		allure	"PascoChewer"
-	}
+    tools {
+		jdk 'Java17'        // Make sure Java17 is added in Jenkins Tools
+        maven 'Maven3'      // Make sure Maven3 is added in Jenkins Tools
+        allure 'PascoChewer'
+    }
 
     stages {
-		stage('Checkout Code') {
+		stage('Environment Info') {
+			steps {
+				sh 'java -version'
+                sh 'mvn -version'
+            }
+        }
+
+        stage('Checkout Code') {
 			steps {
 				checkout scm
             }
         }
 
-        //stage('Build Project') {
-		//	steps {
-		//		sh 'mvn clean compile '
-        //    }
-        //}
+        stage('Build Project') {
+			steps {
+				sh 'mvn clean compile'
+            }
+        }
 
         stage('Run Tests') {
 			steps {
-				sh 'mvn clean test'
+				sh 'mvn test'
             }
             post {
 				always {
