@@ -85,46 +85,227 @@ pipeline {
         }
     }
 
-    post {
+post {
 		success {
-					slackSend(
-                        color: 'good',
-                        message: "✅ Build #${env.BUILD_NUMBER} succeeded! Check the report: ${env.BUILD_URL}"
-                    )
-					emailext(
-                        subject: "✅ Build #${env.BUILD_NUMBER} SUCCESS",
-                        body: "The build succeeded.\nCheck the report here: ${env.BUILD_URL}",
-                        to: "odurokwameee@gmail.com"
-                    )
-                }
+			script {
+				slackSend(
+                color: 'good',
+                message: """
+🎉 *BUILD SUCCESS*
+*Project:* APITestingWithJenkins
+*Build:* #${env.BUILD_NUMBER}
+*Duration:* ${currentBuild.durationString}
+*Status:* All tests passed successfully
 
-        failure {
-					slackSend(
-                        color: 'danger',
-                        message: "❌ Build #${env.BUILD_NUMBER} failed. Check logs: ${env.BUILD_URL}"
-                    )
+📊 *Reports Available:*
+• Jenkins: ${env.BUILD_URL}
+• Test Results: ${env.BUILD_URL}testReport/
+• Allure Report: ${env.BUILD_URL}allure/
 
-					emailext(
-                        subject: "❌ Build #${env.BUILD_NUMBER} FAILED",
-                        body: "The build failed.\nCheck logs here: ${env.BUILD_URL}",
-                        to: "odurokwameee@gmail.com"
-                    )
-        }
+✅ Ready for deployment!
+                """.stripIndent()
+            )
 
-                unstable {
-			slackSend(
-                        color: 'warning',
-                        message: "❌ Build #${env.BUILD_NUMBER} failed. Check logs: ${env.BUILD_URL}"
-                    )
+            emailext(
+                subject: "✅ Build Success - FakeStore API Tests #${env.BUILD_NUMBER}",
+                body: """
+<html>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h2 style="color: #28a745; border-bottom: 2px solid #28a745; padding-bottom: 10px;">
+            🎉 Build Successful
+        </h2>
 
-					emailext(
-                        subject: "❌ Build #${env.BUILD_NUMBER} FAILED",
-                        body: "The build failed.\nCheck logs here: ${env.BUILD_URL}",
-                        to: "odurokwameee@gmail.com"
-                    )
-        }
-        always {
-			cleanWs()
+        <div style="background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 5px; padding: 15px; margin: 20px 0;">
+            <h3 style="margin-top: 0; color: #155724;">Build Information</h3>
+            <ul style="margin: 0;">
+                <li><strong>Project:</strong> FakeStore API Test Suite</li>
+                <li><strong>Build Number:</strong> #${env.BUILD_NUMBER}</li>
+                <li><strong>Duration:</strong> ${currentBuild.durationString}</li>
+                <li><strong>Status:</strong> All tests executed successfully</li>
+            </ul>
+        </div>
+
+        <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; padding: 15px; margin: 20px 0;">
+            <h3 style="margin-top: 0; color: #495057;">📊 Available Reports</h3>
+            <ul style="margin: 0;">
+                <li><a href="${env.BUILD_URL}" style="color: #007bff; text-decoration: none;">📋 Jenkins Build Details</a></li>
+                <li><a href="${env.BUILD_URL}testReport/" style="color: #007bff; text-decoration: none;">🧪 JUnit Test Results</a></li>
+                <li><a href="${env.BUILD_URL}allure/" style="color: #007bff; text-decoration: none;">📈 Allure Test Report</a></li>
+            </ul>
+        </div>
+
+        <p style="margin: 20px 0; padding: 15px; background-color: #e7f3ff; border-left: 4px solid #007bff; border-radius: 3px;">
+            <strong>✅ Status:</strong> The API test suite has completed successfully. All endpoints are functioning as expected.
+        </p>
+
+        <p style="color: #6c757d; font-size: 0.9em; margin-top: 30px; text-align: center;">
+            Automated by Jenkins CI/CD Pipeline<br>
+            Generated on ${new Date().toString()}
+        </p>
+    </div>
+</body>
+</html>
+                """.stripIndent(),
+                mimeType: 'text/html',
+                to: "odurokwameee@gmail.com"
+            )
         }
     }
+
+    unstable {
+			script {
+				slackSend(
+                color: 'warning',
+                message: """
+⚠️ *BUILD UNSTABLE*
+*Project:* APITestingWithJenkins
+*Build:* #${env.BUILD_NUMBER}
+*Duration:* ${currentBuild.durationString}
+*Status:* Some tests failed - requires attention
+
+📊 *Reports Available:*
+• Jenkins: ${env.BUILD_URL}
+• Test Results: ${env.BUILD_URL}testReport/
+• Allure Report: ${env.BUILD_URL}allure/
+
+🔍 Please review failed tests before proceeding
+                """.stripIndent()
+            )
+
+            emailext(
+                subject: "⚠️ Build Unstable - FakeStore API Tests #${env.BUILD_NUMBER}",
+                body: """
+<html>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h2 style="color: #ffc107; border-bottom: 2px solid #ffc107; padding-bottom: 10px;">
+            ⚠️ Build Unstable
+        </h2>
+
+        <div style="background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 5px; padding: 15px; margin: 20px 0;">
+            <h3 style="margin-top: 0; color: #856404;">Build Information</h3>
+            <ul style="margin: 0;">
+                <li><strong>Project:</strong> FakeStore API Test Suite</li>
+                <li><strong>Build Number:</strong> #${env.BUILD_NUMBER}</li>
+                <li><strong>Duration:</strong> ${currentBuild.durationString}</li>
+                <li><strong>Status:</strong> Tests completed with some failures</li>
+            </ul>
+        </div>
+
+        <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; padding: 15px; margin: 20px 0;">
+            <h3 style="margin-top: 0; color: #495057;">📊 Detailed Reports</h3>
+            <ul style="margin: 0;">
+                <li><a href="${env.BUILD_URL}" style="color: #007bff; text-decoration: none;">📋 Jenkins Build Details</a></li>
+                <li><a href="${env.BUILD_URL}testReport/" style="color: #007bff; text-decoration: none;">🧪 JUnit Test Results (Failed Tests)</a></li>
+                <li><a href="${env.BUILD_URL}allure/" style="color: #007bff; text-decoration: none;">📈 Allure Test Report (Detailed Analysis)</a></li>
+            </ul>
+        </div>
+
+        <div style="background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 5px; padding: 15px; margin: 20px 0;">
+            <h3 style="margin-top: 0; color: #856404;">🔍 Next Steps</h3>
+            <ol style="margin: 0;">
+                <li>Review the failed test cases in the Allure report</li>
+                <li>Check API endpoints for any issues</li>
+                <li>Verify test data and environment configuration</li>
+                <li>Fix failing tests and re-run the pipeline</li>
+            </ol>
+        </div>
+
+        <p style="margin: 20px 0; padding: 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 3px;">
+            <strong>⚠️ Action Required:</strong> Some API tests have failed. Please review the reports and address the issues before deployment.
+        </p>
+
+        <p style="color: #6c757d; font-size: 0.9em; margin-top: 30px; text-align: center;">
+            Automated by Jenkins CI/CD Pipeline<br>
+            Generated on ${new Date().toString()}
+        </p>
+    </div>
+</body>
+</html>
+                """.stripIndent(),
+                mimeType: 'text/html',
+                to: "odurokwameee@gmail.com"
+            )
+        }
+    }
+
+    failure {
+			script {
+				slackSend(
+                color: 'danger',
+                message: """
+🚨 *BUILD FAILED*
+*Project:* APITestingWithJenkins
+*Build:* #${env.BUILD_NUMBER}
+*Duration:* ${currentBuild.durationString}
+*Status:* Build process failed
+
+📋 *Logs & Reports:*
+• Jenkins: ${env.BUILD_URL}
+• Console Output: ${env.BUILD_URL}console
+• Build Artifacts: ${env.BUILD_URL}artifact/
+
+🔧 Immediate attention required!
+                """.stripIndent()
+            )
+
+            emailext(
+                subject: "🚨 Build Failed - FakeStore API Tests #${env.BUILD_NUMBER}",
+                body: """
+<html>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h2 style="color: #dc3545; border-bottom: 2px solid #dc3545; padding-bottom: 10px;">
+            🚨 Build Failed
+        </h2>
+
+        <div style="background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px; padding: 15px; margin: 20px 0;">
+            <h3 style="margin-top: 0; color: #721c24;">Build Information</h3>
+            <ul style="margin: 0;">
+                <li><strong>Project:</strong> FakeStore API Test Suite</li>
+                <li><strong>Build Number:</strong> #${env.BUILD_NUMBER}</li>
+                <li><strong>Duration:</strong> ${currentBuild.durationString}</li>
+                <li><strong>Status:</strong> Build process failed to complete</li>
+            </ul>
+        </div>
+
+        <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; padding: 15px; margin: 20px 0;">
+            <h3 style="margin-top: 0; color: #495057;">🔍 Debug Resources</h3>
+            <ul style="margin: 0;">
+                <li><a href="${env.BUILD_URL}" style="color: #007bff; text-decoration: none;">📋 Jenkins Build Details</a></li>
+                <li><a href="${env.BUILD_URL}console" style="color: #007bff; text-decoration: none;">📋 Console Output (Full Logs)</a></li>
+                <li><a href="${env.BUILD_URL}artifact/" style="color: #007bff; text-decoration: none;">📁 Build Artifacts</a></li>
+            </ul>
+        </div>
+
+        <div style="background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px; padding: 15px; margin: 20px 0;">
+            <h3 style="margin-top: 0; color: #721c24;">🔧 Troubleshooting Steps</h3>
+            <ol style="margin: 0;">
+                <li>Check the console output for compilation errors</li>
+                <li>Verify all dependencies are available</li>
+                <li>Ensure test environment is accessible</li>
+                <li>Review recent code changes</li>
+                <li>Contact the development team if issues persist</li>
+            </ol>
+        </div>
+
+        <p style="margin: 20px 0; padding: 15px; background-color: #f8d7da; border-left: 4px solid #dc3545; border-radius: 3px;">
+            <strong>🚨 Critical:</strong> The build process has failed. Immediate attention is required to restore the CI/CD pipeline.
+        </p>
+
+        <p style="color: #6c757d; font-size: 0.9em; margin-top: 30px; text-align: center;">
+            Automated by Jenkins CI/CD Pipeline<br>
+            Generated on ${new Date().toString()}
+        </p>
+    </div>
+</body>
+</html>
+                """.stripIndent(),
+                mimeType: 'text/html',
+                to: "odurokwameee@gmail.com"
+            )
+        }
+    }
+}
 }
