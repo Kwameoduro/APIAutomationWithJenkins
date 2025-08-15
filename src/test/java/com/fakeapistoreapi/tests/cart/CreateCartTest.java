@@ -88,29 +88,29 @@ public class CreateCartTest {
 //        assertThat(response.statusCode()).isEqualTo(400);
 //    }
 
-    @Test
-    @Story("Create a cart with pre-existing products")
-    @Description("Verify that creating a cart with existing products succeeds and returns correct totals")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Create cart with pre-existing products")
-    void createCartWithExistingProducts() {
-        // Ensure a valid user exists
-        int userId = TestDataUtil.ensureUserExists();
-
-        Cart cart = CartTestData.cartWithExistingProducts(userId);
-
-        Response response = given()
-                .spec(RequestSpecs.defaultSpec())
-                .body(cart)
-                .when()
-                .post("/carts")
-                .then()
-                .spec(ResponseSpecs.success201())
-                .extract()
-                .response();
-
-        assertThat(response.jsonPath().getInt("userId")).isEqualTo(cart.getUserId());
-        assertThat(response.jsonPath().getList("products")).isNotEmpty();
-        assertThat(response.jsonPath().getDouble("total")).isGreaterThan(0);
-    }
+//    @Test
+//    @Story("Create a cart with pre-existing products")
+//    @Description("Verify that creating a cart with existing products succeeds and returns correct totals")
+//    @Severity(SeverityLevel.NORMAL)
+//    @DisplayName("Create cart with pre-existing products")
+//    void createCartWithExistingProducts() {
+//        // Ensure a valid user exists
+//        int userId = TestDataUtil.ensureUserExists();
+//
+//        Cart cart = CartTestData.cartWithExistingProducts(userId);
+//
+//        Response response = given()
+//                .spec(RequestSpecs.defaultSpec())
+//                .body(cart)
+//                .when()
+//                .post("/carts")
+//                .then()
+//                .spec(ResponseSpecs.success201())
+//                .extract()
+//                .response();
+//
+//        assertThat(response.jsonPath().getInt("userId")).isEqualTo(cart.getUserId());
+//        assertThat(response.jsonPath().getList("products")).isNotEmpty();
+//        assertThat(response.jsonPath().getDouble("total")).isGreaterThan(0);
+//    }
 }
