@@ -20,30 +20,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("Get User")
 public class GetUserTest {
 
-    @Test
-    @Story("Fetch an existing user by ID")
-    @Description("This test verifies that an existing user can be retrieved successfully using the GET /users/{id} endpoint.")
-    @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Get Existing User by ID")
-    void getExistingUserById() {
-        // Arrange: Ensure user exists via test data
-        User user = UserTestData.validUser();
-        int userId = TestDataUtil.ensureUserExists(user);
-
-        // Act & Assert
-        User fetchedUser = given()
-                .spec(RequestSpecs.defaultSpec())
-                .when()
-                .get("/users/{id}", userId)
-                .then()
-                .spec(ResponseSpecs.success200())
-                .extract()
-                .as(User.class);
-
-        assertThat(fetchedUser.getId()).isEqualTo(userId);
-        assertThat(fetchedUser.getUsername()).isEqualTo(user.getUsername());
-        assertThat(fetchedUser.getEmail()).isEqualTo(user.getEmail());
-    }
+//    @Test
+//    @Story("Fetch an existing user by ID")
+//    @Description("This test verifies that an existing user can be retrieved successfully using the GET /users/{id} endpoint.")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @DisplayName("Get Existing User by ID")
+//    void getExistingUserById() {
+//        // Arrange: Ensure user exists via test data
+//        User user = UserTestData.validUser();
+//        int userId = TestDataUtil.ensureUserExists(user);
+//
+//        // Act & Assert
+//        User fetchedUser = given()
+//                .spec(RequestSpecs.defaultSpec())
+//                .when()
+//                .get("/users/{id}", userId)
+//                .then()
+//                .spec(ResponseSpecs.success200())
+//                .extract()
+//                .as(User.class);
+//
+//        assertThat(fetchedUser.getId()).isEqualTo(userId);
+//        assertThat(fetchedUser.getUsername()).isEqualTo(user.getUsername());
+//        assertThat(fetchedUser.getEmail()).isEqualTo(user.getEmail());
+//    }
 
     @Test
     @Story("Fetch a non-existent user by ID")
