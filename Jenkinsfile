@@ -94,7 +94,7 @@ pipeline {
 					emailext(
                         subject: "✅ Build #${env.BUILD_NUMBER} SUCCESS",
                         body: "The build succeeded.\nCheck the report here: ${env.BUILD_URL}",
-                        to: env.EMAIL_RECIPIENTS
+                        to: "odurokwameee@gmail.com"
                     )
                 }
 
@@ -107,7 +107,7 @@ pipeline {
 					emailext(
                         subject: "❌ Build #${env.BUILD_NUMBER} FAILED",
                         body: "The build failed.\nCheck logs here: ${env.BUILD_URL}",
-                        to: env.EMAIL_RECIPIENTS
+                        to: "odurokwameee@gmail.com"
                     )
         }
 
@@ -120,7 +120,7 @@ pipeline {
 					emailext(
                         subject: "❌ Build #${env.BUILD_NUMBER} FAILED",
                         body: "The build failed.\nCheck logs here: ${env.BUILD_URL}",
-                        to: env.EMAIL_RECIPIENTS
+                        to: "odurokwameee@gmail.com"
                     )
         }
         always {
