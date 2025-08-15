@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Auth",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "minLength": 1
+    },
+    "password": {
+      "type": "string",
+      "minLength": 6
+    },
+    "token": {
+      "type": "string"
+    }
+  },
+  "required": ["username", "password"]
+}

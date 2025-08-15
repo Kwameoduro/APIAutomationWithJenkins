@@ -1,0 +1,12 @@
+/home/jenkins/workspace/APITestingWithJenkins/src/main/java/com/fakestoreapi/utils/JsonUtil.java
+/home/jenkins/workspace/APITestingWithJenkins/src/main/java/com/fakestoreapi/models/Auth.java
+/home/jenkins/workspace/APITestingWithJenkins/src/main/java/com/fakestoreapi/utils/ConfigUtil.java
+/home/jenkins/workspace/APITestingWithJenkins/src/main/java/com/fakestoreapi/models/Category.java
+/home/jenkins/workspace/APITestingWithJenkins/src/main/java/com/fakestoreapi/specs/RequestSpecs.java
+/home/jenkins/workspace/APITestingWithJenkins/src/main/java/com/fakestoreapi/models/Cart.java
+/home/jenkins/workspace/APITestingWithJenkins/src/main/java/com/fakestoreapi/models/Product.java
+/home/jenkins/workspace/APITestingWithJenkins/src/main/java/com/fakestoreapi/utils/DateUtil.java
+/home/jenkins/workspace/APITestingWithJenkins/src/main/java/com/fakestoreapi/models/User.java
+/home/jenkins/workspace/APITestingWithJenkins/src/main/java/com/fakestoreapi/utils/FileUtil.java
+/home/jenkins/workspace/APITestingWithJenkins/src/main/java/com/fakestoreapi/specs/ResponseSpecs.java
+/home/jenkins/workspace/APITestingWithJenkins/src/main/java/com/fakestoreapi/constants/ApiPaths.java
