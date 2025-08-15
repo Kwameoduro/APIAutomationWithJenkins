@@ -154,7 +154,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <useModulePath>false</useModulePath>
-                    <reportsDirectory>${reports.dir}/surefire</reportsDirectory>
+                    <!-- Removed custom reportsDirectory to use default location -->
                     <systemPropertyVariables>
                         <allure.results.directory>${allure.results.dir}</allure.results.directory>
                     </systemPropertyVariables>
@@ -181,7 +181,7 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <reportsDirectory>${reports.dir}/failsafe</reportsDirectory>
+                            <!-- Removed custom reportsDirectory to use default location -->
                             <systemPropertyVariables>
                                 <allure.results.directory>${allure.results.dir}</allure.results.directory>
                             </systemPropertyVariables>
