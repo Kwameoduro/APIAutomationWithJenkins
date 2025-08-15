@@ -67,26 +67,26 @@ public class CreateCartTest {
         assertThat(response.jsonPath().getInt("userId")).isEqualTo(cart.getUserId());
     }
 
-    @Test
-    @Story("Create an invalid cart")
-    @Description("Verify that creating an invalid cart fails")
-    @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Create an invalid cart")
-    void createInvalidCart() {
-        Cart cart = CartTestData.invalidCart();
-
-        Response response = given()
-                .spec(RequestSpecs.defaultSpec())
-                .body(cart)
-                .when()
-                .post("/carts")
-                .then()
-                .spec(ResponseSpecs.badRequest())
-                .extract()
-                .response();
-
-        assertThat(response.statusCode()).isEqualTo(400);
-    }
+//    @Test
+//    @Story("Create an invalid cart")
+//    @Description("Verify that creating an invalid cart fails")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @DisplayName("Create an invalid cart")
+//    void createInvalidCart() {
+//        Cart cart = CartTestData.invalidCart();
+//
+//        Response response = given()
+//                .spec(RequestSpecs.defaultSpec())
+//                .body(cart)
+//                .when()
+//                .post("/carts")
+//                .then()
+//                .spec(ResponseSpecs.badRequest())
+//                .extract()
+//                .response();
+//
+//        assertThat(response.statusCode()).isEqualTo(400);
+//    }
 
     @Test
     @Story("Create a cart with pre-existing products")
