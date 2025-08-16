@@ -15,7 +15,7 @@ It covers CRUD operations for key resources: **Products**, **Carts**, **Users**,
 - Jenkins (CI/CD)
 - Slack and Email Notifications
 
-------x
+---
 
 ##  Running Tests
 ```bash
