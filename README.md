@@ -2,7 +2,7 @@
 
 ##  Overview
 This project automates API testing for the [FakeStore API](https://fakestoreapi.com/) using **REST Assured** and **JUnit 5**.  
-It covers CRUD operations for key resources: **Products**, **Carts**, **Users**, and **Auth**.
+It covers CRUD operations for key resources: **Products**, **Cart**, **Users**, and **Auth**.
 
 ---
 
