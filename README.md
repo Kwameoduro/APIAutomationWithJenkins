@@ -1,4 +1,4 @@
-# FakeStore API Test Automation
+# FakeStore API Test Automation With Jenkins
 
 ##  Overview
 This project automates API testing for the [FakeStore API](https://fakestoreapi.com/) using **REST Assured** and **JUnit 5**.  
