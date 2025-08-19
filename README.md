@@ -6,15 +6,15 @@ It covers CRUD operations for key resources: **Products**, **Cart**, **Users**, 
 
 ---
 
-##  Stack
+##  Tech Stack
 - Java 21+
 - Maven
 - REST Assured
 - JUnit 5
 - JSON Schema Validator
 - Jenkins (CI/CD)
-- Slack and Email Notifications
-
+- Slack Notification
+- Email Notification
 ---
 
 ##  Running Tests
