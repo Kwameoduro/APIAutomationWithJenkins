@@ -6,7 +6,7 @@ It covers CRUD operations for key resources: **Products**, **Cart**, **Users**, 
 
 ---
 
-##  Tech Stack
+##  Technology Stack
 - Java 21+
 - Maven
 - REST Assured
