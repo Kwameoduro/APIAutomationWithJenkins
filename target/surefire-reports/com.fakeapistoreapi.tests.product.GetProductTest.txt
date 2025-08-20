@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.fakeapistoreapi.tests.product.GetProductTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 2.059 s <<< FAILURE! -- in com.fakeapistoreapi.tests.product.GetProductTest
-com.fakeapistoreapi.tests.product.GetProductTest.getProductByInvalidId -- Time elapsed: 0.396 s <<< FAILURE!
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 2.174 s <<< FAILURE! -- in com.fakeapistoreapi.tests.product.GetProductTest
+com.fakeapistoreapi.tests.product.GetProductTest.getProductByInvalidId -- Time elapsed: 0.474 s <<< FAILURE!
 java.lang.AssertionError: 
 1 expectation failed.
 Expected status code <404> but was <200>.

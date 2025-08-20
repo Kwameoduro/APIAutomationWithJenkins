@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.fakeapistoreapi.tests.product.DeleteProductTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 3.817 s <<< FAILURE! -- in com.fakeapistoreapi.tests.product.DeleteProductTest
-com.fakeapistoreapi.tests.product.DeleteProductTest.deleteProductTwice -- Time elapsed: 1.192 s <<< FAILURE!
+Tests run: 5, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 3.839 s <<< FAILURE! -- in com.fakeapistoreapi.tests.product.DeleteProductTest
+com.fakeapistoreapi.tests.product.DeleteProductTest.deleteProductTwice -- Time elapsed: 1.189 s <<< FAILURE!
 java.lang.AssertionError: 
 1 expectation failed.
 Expected status code (<400> or <404>) but was <200>.
@@ -96,7 +96,7 @@ Expected status code (<400> or <404>) but was <200>.
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 
-com.fakeapistoreapi.tests.product.DeleteProductTest.deleteProductWithInvalidId -- Time elapsed: 0.543 s <<< FAILURE!
+com.fakeapistoreapi.tests.product.DeleteProductTest.deleteProductWithInvalidId -- Time elapsed: 0.565 s <<< FAILURE!
 java.lang.AssertionError: 
 1 expectation failed.
 Expected status code (<400> or <404>) but was <200>.

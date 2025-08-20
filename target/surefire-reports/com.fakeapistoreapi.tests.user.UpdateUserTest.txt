@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.fakeapistoreapi.tests.user.UpdateUserTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 2.977 s <<< FAILURE! -- in com.fakeapistoreapi.tests.user.UpdateUserTest
-com.fakeapistoreapi.tests.user.UpdateUserTest.updateNonExistentUser -- Time elapsed: 0.499 s <<< FAILURE!
+Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 2.901 s <<< FAILURE! -- in com.fakeapistoreapi.tests.user.UpdateUserTest
+com.fakeapistoreapi.tests.user.UpdateUserTest.updateNonExistentUser -- Time elapsed: 0.655 s <<< FAILURE!
 java.lang.AssertionError: 
 1 expectation failed.
 Expected status code <404> but was <200>.
@@ -88,7 +88,7 @@ Expected status code <404> but was <200>.
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 
-com.fakeapistoreapi.tests.user.UpdateUserTest.updateUserWithInvalidData -- Time elapsed: 1.246 s <<< FAILURE!
+com.fakeapistoreapi.tests.user.UpdateUserTest.updateUserWithInvalidData -- Time elapsed: 1.122 s <<< FAILURE!
 java.lang.AssertionError: 
 1 expectation failed.
 Expected status code <400> but was <200>.
