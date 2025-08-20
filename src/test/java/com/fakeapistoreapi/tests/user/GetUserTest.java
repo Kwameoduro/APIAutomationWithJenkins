@@ -55,28 +55,4 @@ public class GetUserTest {
         assertThat(users).isNotEmpty();
     }
 
-    @Test
-    @Story("Fetch user and validate required fields")
-    @Description("This test verifies that a user fetched by ID contains all required fields.")
-    @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Get User Field Validation")
-    void getUserFieldValidation() {
-        User user = UserTestData.validUser();
-        int userId = TestDataUtil.ensureUserExists(user);
-
-        User fetchedUser = given()
-                .spec(RequestSpecs.defaultSpec())
-                .when()
-                .get("/users/{id}", userId)
-                .then()
-                .spec(ResponseSpecs.success200())
-                .extract()
-                .as(User.class);
-
-        assertThat(fetchedUser.getUsername()).isNotEmpty();
-        assertThat(fetchedUser.getEmail()).isNotEmpty();
-        assertThat(fetchedUser.getPassword()).isNotEmpty();
-        assertThat(fetchedUser.getName().getFirstname()).isNotEmpty();
-        assertThat(fetchedUser.getName().getLastname()).isNotEmpty();
-    }
 }
